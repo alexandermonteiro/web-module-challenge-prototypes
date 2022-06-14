@@ -15,10 +15,42 @@
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
 }
+Person.prototype.eat = function (edible) {
+  if (this.stomach.length <= 10) {
+    this.stomach.push(edible);
+  }
+};
 
+Person.prototype.poop = function () {
+  this.stomach = [];
+};
+
+Person.prototype.toString = function () {
+  return `${this.name}, ${this.age}`;
+};
+
+const romy = new Person("Romy", 29);
+const bradly = new Person("Bradly, 27");
+const jordan = new Person("Jordan", 24);
+
+console.log(romy);
+console.log(bradly);
+console.log(jordan);
+
+jordan.eat("tacos");
+jordan.eat("sushi");
+jordan.eat("pizza");
+jordan.eat("burger");
+jordan.eat("cake");
+console.log(jordan.stomach);
+
+jordan.poop();
+console.log(jordan.stomach);
 
 /*
   TASK 2
@@ -36,10 +68,21 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
 }
 
+Car.prototype.fill = function (gallons) {
+  this.tank = +gallons;
+};
+
+Car.prototype.drive = function (distance, milesPerGallon) {
+  this.odometer.push(distance);
+  this.tank;
+};
 
 /*
   TASK 3
@@ -49,10 +92,7 @@ function Car() {
         + Should return a string "Playing with x", x being the favorite toy.
 */
 
-function Baby() {
-
-}
-
+function Baby() {}
 
 /* 
   TASK 4
@@ -66,14 +106,14 @@ function Baby() {
 ///////// END OF CHALLENGE /////////
 
 /* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
-function foo(){
-  console.log('its working!');
-  return 'bar';
+function foo() {
+  console.log("its working!");
+  return "bar";
 }
 foo();
 module.exports = {
   foo,
-  Person, 
+  Person,
   Car,
-  Baby
-}
+  Baby,
+};
